@@ -4,17 +4,18 @@ from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, "README.txt")) as f:
-    README = f.read()
+    README = f.read().rstrip("\n")
 with open(os.path.join(here, "CHANGES.txt")) as f:
-    CHANGES = f.read()
+    CHANGES = f.read().rstrip("\n")
 with open(os.path.join(here, "requirements.txt")) as _file:
-    REQUIREMENTS = [line for line in _file.readlines()]
-
+    REQUIREMENTS = [line.rstrip("\n") for line in _file.readlines()]
+with open(os.path.join(here, "VERSION")) as _file:
+    VERSION = _file.read().rstrip("\n")
 
 setup(
-    name="schema-registry",
-    version="1.0.0",
-    description="schema-registry",
+    name="avro-registry",
+    version=VERSION,
+    description="avro-registry",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
       "Programming Language :: Python",
@@ -24,7 +25,7 @@ setup(
     ],
     author="Alex Milstead",
     author_email="alex@amilstead.com",
-    url="https://github.com/packagelib/schema-registry",
+    url="https://github.com/packagelib/avro-registry",
     packages=find_packages(exclude=["tests"]),
     install_requires=REQUIREMENTS,
     tests_require=REQUIREMENTS,

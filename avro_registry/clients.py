@@ -21,14 +21,3 @@ class FileSystemClient(object):
             contents = _file.read()
 
         return contents
-
-    def write(self, location, contents):
-        location = os.path.abspath(
-            os.path.join(
-                self._root,
-                service_name,
-                "v%d.avsc" % version
-            )
-        )
-        with open(location, "w") as _file:
-            _file.write(contents)
