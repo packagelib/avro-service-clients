@@ -13,9 +13,9 @@ with open(os.path.join(here, "VERSION")) as _file:
     VERSION = _file.read().rstrip("\n")
 
 setup(
-    name="avro-registry",
+    name="service-clients",
     version=VERSION,
-    description="avro-registry",
+    description="service-clients",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
       "Programming Language :: Python",
@@ -25,7 +25,7 @@ setup(
     ],
     author="Alex Milstead",
     author_email="alex@amilstead.com",
-    url="https://github.com/packagelib/avro-registry",
+    url="https://github.com/packagelib/service-clients",
     packages=find_packages(exclude=["tests"]),
     install_requires=REQUIREMENTS,
     tests_require=REQUIREMENTS,
