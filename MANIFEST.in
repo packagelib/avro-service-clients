@@ -1,2 +1,2 @@
-include *.txt *.ini *.cfg *.rst
+include VERSION *.txt *.ini *.cfg *.rst
 recursive-include schemaregistry *.ico *.png *.css *.gif *.jpg *.pt *.txt *.mak *.mako *.js *.html *.xml
