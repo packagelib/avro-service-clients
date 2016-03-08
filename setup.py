@@ -1,6 +1,8 @@
 import os
 
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, "README.txt")) as f:
@@ -12,20 +14,21 @@ with open(os.path.join(here, "requirements.txt")) as _file:
 with open(os.path.join(here, "VERSION")) as _file:
     VERSION = _file.read().rstrip("\n")
 
+
 setup(
-    name="service-clients",
+    name="avro-service-clients",
     version=VERSION,
-    description="service-clients",
+    description="avro-service-clients",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
       "Programming Language :: Python",
-      "Framework :: Pyramid",
-      "Topic :: Internet :: WWW/HTTP",
-      "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+      "Development Status :: 3 - Alpha",
+      "Topic :: Software Development :: Microservices"
+      "Topic :: Software Development :: Libraries :: Avro",
     ],
     author="Alex Milstead",
     author_email="alex@amilstead.com",
-    url="https://github.com/packagelib/service-clients",
+    url="https://github.com/packagelib/avro-service-clients",
     packages=find_packages(exclude=["tests"]),
     install_requires=REQUIREMENTS,
     tests_require=REQUIREMENTS,

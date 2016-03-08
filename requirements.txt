@@ -1,6 +1,4 @@
-argparse==1.2.1
 avro==1.7.7
-wsgiref==0.1.2
 zope.component==4.2.2
 zope.event==4.2.0
 zope.interface==4.1.3

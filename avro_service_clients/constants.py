@@ -1,0 +1,2 @@
+ENV_PREFIX = "AVRO_SERVICE_CLIENTS"
+REGISTRY_PREFIX = "avro-service-clients-api"
