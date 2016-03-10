@@ -4,7 +4,6 @@ from zope import interface as zi
 
 from avro_service_clients import constants
 from avro_service_clients import interfaces as api
-from avro_service_clients import validators
 
 REGISTRY_PATH_ENVVAR = "LOCAL_REGISTRY_PATH"
 
@@ -44,8 +43,7 @@ class FileSystemProtocolLoader(object):
         filename_parts = [name]
 
         if version:
-            version = validators.validate_envvar_key(version)
-            filename_parts.append(version)
+            filename_parts.append(str(version))
 
         filename = "-".join(filename_parts)
         filename = "{}.avpr".format(filename)
@@ -62,7 +60,7 @@ class FileSystemProtocolLoader(object):
 
         return contents
 
-    def get_protocol(self, name, version):
+    def get_protocol(self, name, version=None):
         """
         Retrieves an avro.protocol object.
 

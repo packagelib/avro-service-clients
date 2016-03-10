@@ -19,21 +19,25 @@ def registry_api_name(name):
     return "{}-{}".format(constants.REGISTRY_PREFIX, name)
 
 
-def get_loader():
+def get_protocol_loader():
+
     protocol_loader_type = os.environ.get(
         PROTOCOL_LOADER_TYPE_ENVVAR, "local"
     ) or "local"
     protocol_loader_type = "{}-protocol".format(protocol_loader_type)
     protocol_type_name = registry_api_name(protocol_loader_type)
     protocol_loader = zc.createObject(protocol_type_name)
+    return protocol_loader
 
+
+def get_loader():
     client_loader_type = os.environ.get(
         LOADER_TYPE_ENVVAR, "environment"
     ) or "environment"
     client_loader_type = "{}-client".format(client_loader_type)
     client_type_name = registry_api_name(client_loader_type)
     client_loader = zc.getAdapter(
-        protocol_loader,
+        get_protocol_loader(),
         interface=api.IClientLoader,
         name=client_type_name
     )
@@ -80,5 +84,6 @@ _init()
 __all__ = [
     registry_api_name.__name__,
     get_client.__name__,
-    get_loader.__name__
+    get_loader.__name__,
+    get_protocol_loader.__name__
 ]

@@ -1,0 +1,9 @@
+protocol TestService {
+
+    record TestRecord {
+        string field;
+    }
+
+    string foo(string bar);
+
+}

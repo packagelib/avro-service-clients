@@ -5,12 +5,15 @@ from setuptools import setup
 
 
 here = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(here, "README.txt")) as f:
+with open(os.path.join(here, "README.md")) as f:
     README = f.read().rstrip("\n")
 with open(os.path.join(here, "CHANGES.txt")) as f:
     CHANGES = f.read().rstrip("\n")
-with open(os.path.join(here, "requirements.txt")) as _file:
+with open(os.path.join(here, "requirements", "core.txt")) as _file:
     REQUIREMENTS = [line.rstrip("\n") for line in _file.readlines()]
+with open(os.path.join(here, "requirements", "test.txt")) as _file:
+    TEST_REQUIREMENTS = REQUIREMENTS
+    TEST_REQUIREMENTS += [line.rstrip("\n") for line in _file.readlines()]
 with open(os.path.join(here, "VERSION")) as _file:
     VERSION = _file.read().rstrip("\n")
 

@@ -2,13 +2,13 @@ import unittest
 import string
 import random
 
-from avro_service_clients import validators
+from avro_service_clients import utils
 
 
-class TestValidators(unittest.TestCase):
+class TestUtils(unittest.TestCase):
 
     def setUp(self):
-        valid = set(list(string.digits + string.ascii_letters))
+        valid = set(list(string.digits + string.ascii_letters + "_ "))
         invalid = set.difference(
             set(string.printable),
             valid
@@ -16,13 +16,13 @@ class TestValidators(unittest.TestCase):
         self.invalid_envvar_chars = list(invalid)
 
     def test_validate_envvar_key_none(self):
-        self.assertEqual("", validators.validate_envvar_key(None))
+        self.assertEqual("", utils.validate_envvar_key(None))
 
     def test_validate_envvar_key_simple(self):
-        # Test that anything other than ascii a-z0-9 is converted.
+        # Test that anything other than ascii a-z0-9 and _ is converted.
         input_string = "foo-bar"
         expected = "FOO_BAR"
-        actual = validators.validate_envvar_key(input_string)
+        actual = utils.validate_envvar_key(input_string)
         self.assertEqual(expected, actual)
 
     def test_validate_envvar_key_bookends(self):
@@ -35,7 +35,7 @@ class TestValidators(unittest.TestCase):
         )
 
         expected = "FOO"
-        actual = validators.validate_envvar_key(prefix + middle + suffix)
+        actual = utils.validate_envvar_key(prefix + middle + suffix)
         self.assertEqual(expected, actual)
 
     def test_validate_envvar_key_nested(self):
@@ -53,5 +53,22 @@ class TestValidators(unittest.TestCase):
         suffix = suffix0 + suffix1
 
         expected = "FOO_BAR_BAZ"
-        actual = validators.validate_envvar_key(prefix + middle + suffix)
+        actual = utils.validate_envvar_key(prefix + middle + suffix)
         self.assertEqual(expected, actual)
+
+    def test_format_envvar_key(self):
+        expected = "AVRO_SERVICE_CLIENTS_FOO_HOST"
+        actual = utils.format_envvar_key("foo", None, "host")
+        self.assertEqual(expected, actual)
+
+        expected = "AVRO_SERVICE_CLIENTS_FOO_1_0_0_HOST"
+        actual = utils.format_envvar_key("foo", "1.0.0", "host")
+        self.assertEqual(expected, actual)
+
+        self.assertRaises(
+            KeyError,
+            utils.format_envvar_key,
+            "foo",
+            "1.0.0",
+            "bogus"
+        )

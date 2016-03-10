@@ -1,0 +1,21 @@
+{
+  "protocol" : "TestService",
+  "namespace" : null,
+  "types" : [ {
+    "type" : "record",
+    "name" : "TestRecord",
+    "fields" : [ {
+      "name" : "field",
+      "type" : "string"
+    } ]
+  } ],
+  "messages" : {
+    "foo" : {
+      "request" : [ {
+        "name" : "bar",
+        "type" : "string"
+      } ],
+      "response" : "string"
+    }
+  }
+}
