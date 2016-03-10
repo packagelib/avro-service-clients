@@ -16,6 +16,23 @@
         "type" : "string"
       } ],
       "response" : "string"
+    },
+    "bar" : {
+      "request" : [ {
+        "name" : "baz",
+        "type" : "string"
+      } ],
+      "response" : {
+        "type" : "array",
+        "items" : "string"
+      }
+    },
+    "baz" : {
+      "request" : [ {
+        "name" : "fizz",
+        "type" : "string"
+      } ],
+      "response" : [ "string", "null" ]
     }
   }
 }

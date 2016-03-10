@@ -45,6 +45,13 @@ class TestLocalProtocolLoader(unittest.TestCase):
         actual = json.loads(obj.get_protocol_string("test"))
         self.assertDictEqual(expected, actual)
 
+        # Test version-based.
+        with open(os.path.join(schema_dir, "test-1.0.0.avpr")) as _file:
+            expected = json.load(_file)
+
+        actual = json.loads(obj.get_protocol_string("test", "1.0.0"))
+        self.assertDictEqual(expected, actual)
+
     def test_get_protocol(self):
         mock_env = {self.envvar: schema_dir}
         with mock.patch.dict(os.environ, mock_env):

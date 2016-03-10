@@ -24,8 +24,8 @@ setup(
     description="avro-service-clients",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
-      "Programming Language :: Python",
-      "Development Status :: 3 - Alpha"
+        "Programming Language :: Python",
+        "Development Status :: 3 - Alpha"
     ],
     author="Alex Milstead",
     author_email="alex@amilstead.com",

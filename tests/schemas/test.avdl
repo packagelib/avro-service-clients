@@ -6,4 +6,7 @@ protocol TestService {
 
     string foo(string bar);
 
+    array<string> bar(string baz);
+
+    union {string, null} baz(string fizz);
 }

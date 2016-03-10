@@ -56,6 +56,23 @@ class TestUtils(unittest.TestCase):
         actual = utils.validate_envvar_key(prefix + middle + suffix)
         self.assertEqual(expected, actual)
 
+    def test_validate_envvar_key_unicode(self):
+        val = u"test encoding"
+        expected = "TEST_ENCODING"
+        actual = utils.validate_envvar_key(val)
+        self.assertEqual(expected, actual)
+
+    def test_validate_envvar_key_unstringable(self):
+        class Bogus(object):
+            def __str__(self):
+                raise Exception("An exception")
+
+        self.assertRaises(
+            ValueError,
+            utils.validate_envvar_key,
+            Bogus()
+        )
+
     def test_format_envvar_key(self):
         expected = "AVRO_SERVICE_CLIENTS_FOO_HOST"
         actual = utils.format_envvar_key("foo", None, "host")
