@@ -25,8 +25,10 @@ setup(
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
         "Programming Language :: Python",
-        "Development Status :: 3 - Alpha"
+        "Development Status :: 3 - Alpha",
+        "License :: OSI Approved :: Apache Software License"
     ],
+    license="Apache License (2.0)",
     author="Alex Milstead",
     author_email="alex@amilstead.com",
     url="https://github.com/packagelib/avro-service-clients",
