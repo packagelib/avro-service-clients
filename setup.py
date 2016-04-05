@@ -5,6 +5,8 @@ from setuptools import setup
 
 
 here = os.path.abspath(os.path.dirname(__file__))
+__version__ = None
+
 with open(os.path.join(here, "README.md")) as f:
     README = f.read().rstrip("\n")
 with open(os.path.join(here, "CHANGES.txt")) as f:
@@ -14,13 +16,13 @@ with open(os.path.join(here, "requirements", "core.txt")) as _file:
 with open(os.path.join(here, "requirements", "test.txt")) as _file:
     TEST_REQUIREMENTS = REQUIREMENTS
     TEST_REQUIREMENTS += [line.rstrip("\n") for line in _file.readlines()]
-with open(os.path.join(here, "VERSION")) as _file:
-    VERSION = _file.read().rstrip("\n")
+with open(os.path.join(here, "avro_service_clients", "version.py")) as _file:
+    exec(_file.read())
 
 
 setup(
     name="avro-service-clients",
-    version=VERSION,
+    version=__version__,
     description="avro-service-clients",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
@@ -34,6 +36,6 @@ setup(
     url="https://github.com/packagelib/avro-service-clients",
     packages=find_packages(exclude=["tests"]),
     install_requires=REQUIREMENTS,
-    tests_require=REQUIREMENTS,
+    tests_require=TEST_REQUIREMENTS,
     test_suite="tests",
 )
