@@ -1,4 +1,4 @@
-avro==1.7.7
+avro==1.11.3
 zope.component==4.2.2
 zope.event==4.2.0
 zope.interface==4.1.3
